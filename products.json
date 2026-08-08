@@ -1,0 +1,618 @@
+[
+  {
+    "id": "WT-01",
+    "name": "Rose Garden Wide Top",
+    "cat": "Wide Tops",
+    "img": "rose-garden.jpg",
+    "colors": [
+      "Rose",
+      "Blush",
+      "Taupe",
+      "Ivory",
+      "Sage"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "desc": "A flowing floral wide top for comfortable, elegant modest dressing."
+  },
+  {
+    "id": "WT-02",
+    "name": "Sage Breeze Wide Top",
+    "cat": "Wide Tops",
+    "img": "sage-breeze.jpg",
+    "colors": [
+      "Sage",
+      "Rose",
+      "Taupe",
+      "Ivory"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "desc": "A flowing floral wide top for comfortable, elegant modest dressing."
+  },
+  {
+    "id": "WT-03",
+    "name": "Azure Floral Wide Top",
+    "cat": "Wide Tops",
+    "img": "azure-floral.jpg",
+    "colors": [
+      "Navy",
+      "Blue",
+      "Taupe",
+      "Ivory"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "desc": "A flowing floral wide top for comfortable, elegant modest dressing."
+  },
+  {
+    "id": "WT-04",
+    "name": "Sunshine Wide Top",
+    "cat": "Wide Tops",
+    "img": "sunshine.jpg",
+    "colors": [
+      "Mustard",
+      "Rose",
+      "Teal",
+      "Taupe",
+      "Ivory"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "desc": "A flowing floral wide top for comfortable, elegant modest dressing."
+  },
+  {
+    "id": "WT-05",
+    "name": "Teal Blossom Wide Top",
+    "cat": "Wide Tops",
+    "img": "teal-blossom.jpg",
+    "colors": [
+      "Teal",
+      "Rose",
+      "Aqua",
+      "Taupe",
+      "Ivory"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "desc": "A flowing floral wide top for comfortable, elegant modest dressing."
+  },
+  {
+    "id": "WT-06",
+    "name": "Sky Whisper Wide Top",
+    "cat": "Wide Tops",
+    "img": "sky-whisper.jpg",
+    "colors": [
+      "Dusty Blue",
+      "Blue",
+      "Taupe",
+      "Stone",
+      "Ivory"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "desc": "A flowing floral wide top for comfortable, elegant modest dressing."
+  },
+  {
+    "id": "WT-07",
+    "name": "Plum Elegance Wide Top",
+    "cat": "Wide Tops",
+    "img": "plum-elegance.jpg",
+    "colors": [
+      "Plum",
+      "Rose",
+      "Mauve",
+      "Taupe",
+      "Ivory"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "desc": "A flowing floral wide top for comfortable, elegant modest dressing."
+  },
+  {
+    "id": "WT-08",
+    "name": "Lavender Mist Wide Top",
+    "cat": "Wide Tops",
+    "img": "lavender-mist.jpg",
+    "colors": [
+      "Lavender",
+      "Rose",
+      "Mauve",
+      "Grey",
+      "Ivory"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "desc": "A flowing floral wide top for comfortable, elegant modest dressing."
+  },
+  {
+    "id": "WT-09",
+    "name": "Dusty Blue Wide Top",
+    "cat": "Wide Tops",
+    "img": "dusty-blue.jpg",
+    "colors": [
+      "Dusty Blue",
+      "Mauve",
+      "Sage",
+      "Taupe",
+      "Ivory"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "desc": "A flowing floral wide top for comfortable, elegant modest dressing."
+  },
+  {
+    "id": "WT-10",
+    "name": "Midnight Bloom Wide Top",
+    "cat": "Wide Tops",
+    "img": "midnight-bloom.jpg",
+    "colors": [
+      "Black",
+      "Charcoal",
+      "Taupe",
+      "Mauve",
+      "Ivory"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "desc": "A flowing floral wide top for comfortable, elegant modest dressing."
+  },
+  {
+    "id": "WT-11",
+    "name": "Mocha Blossom Wide Top",
+    "cat": "Wide Tops",
+    "img": "mocha-blossom.jpg",
+    "colors": [
+      "Mocha",
+      "Taupe",
+      "Stone",
+      "Ivory"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "desc": "A flowing floral wide top for comfortable, elegant modest dressing."
+  },
+  {
+    "id": "WT-12",
+    "name": "Oatmeal Bloom Wide Top",
+    "cat": "Wide Tops",
+    "img": "oatmeal-bloom.jpg",
+    "colors": [
+      "Oatmeal",
+      "Taupe",
+      "Stone",
+      "Ivory"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "desc": "A flowing floral wide top for comfortable, elegant modest dressing."
+  },
+  {
+    "id": "WT-13",
+    "name": "Sage Garden Wide Top",
+    "cat": "Wide Tops",
+    "img": "sage-garden.jpg",
+    "colors": [
+      "Sage",
+      "Rose",
+      "Olive",
+      "Taupe",
+      "Ivory"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "desc": "A flowing floral wide top for comfortable, elegant modest dressing."
+  },
+  {
+    "id": "WT-14",
+    "name": "Lilac Meadow Wide Top",
+    "cat": "Wide Tops",
+    "img": "lilac-meadow.jpg",
+    "colors": [
+      "Lilac",
+      "Rose",
+      "Sage",
+      "Taupe",
+      "Ivory"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "desc": "A flowing floral wide top for comfortable, elegant modest dressing."
+  },
+  {
+    "id": "WT-15",
+    "name": "Taupe Blossom Wide Top",
+    "cat": "Wide Tops",
+    "img": "taupe-blossom.jpg",
+    "colors": [
+      "Taupe",
+      "Sage",
+      "Stone",
+      "Ivory"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "desc": "A flowing floral wide top for comfortable, elegant modest dressing."
+  },
+  {
+    "id": "WT-16",
+    "name": "Charcoal Bloom Wide Top",
+    "cat": "Wide Tops",
+    "img": "charcoal-bloom.jpg",
+    "colors": [
+      "Charcoal",
+      "Mauve",
+      "Sage",
+      "Taupe",
+      "Ivory"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "desc": "A flowing floral wide top for comfortable, elegant modest dressing."
+  },
+  {
+    "id": "WT-17",
+    "name": "Sage Blossom Wide Top",
+    "cat": "Wide Tops",
+    "img": "sage-blossom.jpg",
+    "colors": [
+      "Sage",
+      "Rose",
+      "Olive",
+      "Taupe",
+      "Ivory"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "desc": "A flowing floral wide top for comfortable, elegant modest dressing."
+  },
+  {
+    "id": "WC-001",
+    "name": "Wards Signature Dress",
+    "cat": "Dresses",
+    "img": "signature-dress.jpg",
+    "colors": [
+      "Black",
+      "Chocolate",
+      "Stone"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "desc": "A flowing full-length maxi dress with elegant drape."
+  },
+  {
+    "id": "WC-002",
+    "name": "Chelsea Dress",
+    "cat": "Dresses",
+    "img": "chelsea-dress.jpg",
+    "colors": [
+      "Black",
+      "Chocolate",
+      "Stone",
+      "Taupe"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "desc": "An elevated occasion dress with pleated details and a refined belt."
+  },
+  {
+    "id": "WC-003",
+    "name": "Kensington Abaya",
+    "cat": "Abayas",
+    "img": "kensington-abaya.jpg",
+    "colors": [
+      "Stone",
+      "Taupe",
+      "Black"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "desc": "A premium open-front abaya with wide sleeves and matching belt."
+  },
+  {
+    "id": "WC-004",
+    "name": "Mayfair Co-Ord",
+    "cat": "Co-Ords",
+    "img": "mayfair-coord.jpg",
+    "colors": [
+      "Taupe",
+      "Black",
+      "Mocha"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "desc": "A relaxed long tunic and wide-leg trouser set."
+  },
+  {
+    "id": "WC-005",
+    "name": "London Long Coat",
+    "cat": "Outerwear",
+    "img": "london-coat.jpg",
+    "colors": [
+      "Taupe",
+      "Charcoal",
+      "Black"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "desc": "A full-length tailored coat for elegant layering."
+  },
+  {
+    "id": "WC-006",
+    "name": "Wards Essential Set",
+    "cat": "Co-Ords",
+    "img": "essential-set.jpg",
+    "colors": [
+      "Sand",
+      "Mocha",
+      "Black"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "desc": "A relaxed premium top and wide-leg trouser set."
+  },
+  {
+    "id": "LN-001",
+    "name": "Pleated Maxi Dress",
+    "cat": "Longer Styles",
+    "img": "longer-styles.jpg",
+    "colors": [
+      "Ivory",
+      "Black",
+      "Olive"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "desc": "A new longer Wards silhouette created for refined modest styling."
+  },
+  {
+    "id": "LN-002",
+    "name": "Layered Tunic Set",
+    "cat": "Longer Styles",
+    "img": "longer-styles.jpg",
+    "colors": [
+      "Navy",
+      "Stone",
+      "Grey"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "desc": "A new longer Wards silhouette created for refined modest styling."
+  },
+  {
+    "id": "LN-003",
+    "name": "Belted Shirt Dress",
+    "cat": "Longer Styles",
+    "img": "longer-styles.jpg",
+    "colors": [
+      "Olive",
+      "Taupe",
+      "Chocolate"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "desc": "A new longer Wards silhouette created for refined modest styling."
+  },
+  {
+    "id": "LN-004",
+    "name": "Flowy Co-Ord Set",
+    "cat": "Longer Styles",
+    "img": "longer-styles.jpg",
+    "colors": [
+      "Dusty Rose",
+      "Stone",
+      "Mocha"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "desc": "A new longer Wards silhouette created for refined modest styling."
+  },
+  {
+    "id": "LN-005",
+    "name": "Embroidered Abaya",
+    "cat": "Longer Styles",
+    "img": "longer-styles.jpg",
+    "colors": [
+      "Chocolate",
+      "Black",
+      "Taupe"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "desc": "A new longer Wards silhouette created for refined modest styling."
+  },
+  {
+    "id": "LN-006",
+    "name": "Asymmetric Tunic",
+    "cat": "Longer Styles",
+    "img": "longer-styles.jpg",
+    "colors": [
+      "Sky Blue",
+      "Ivory",
+      "Grey"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "desc": "A new longer Wards silhouette created for refined modest styling."
+  },
+  {
+    "id": "LN-007",
+    "name": "Long Shirt Dress",
+    "cat": "Longer Styles",
+    "img": "longer-styles.jpg",
+    "colors": [
+      "Black",
+      "Stone",
+      "Olive"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "desc": "A new longer Wards silhouette created for refined modest styling."
+  },
+  {
+    "id": "LN-008",
+    "name": "Long Kimono Coat",
+    "cat": "Longer Styles",
+    "img": "longer-styles.jpg",
+    "colors": [
+      "Taupe",
+      "Stone",
+      "Black"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "desc": "A new longer Wards silhouette created for refined modest styling."
+  }
+]
