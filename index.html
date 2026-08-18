@@ -1,1 +1,877 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>WARDA Fashion | Modest Fashion</title><link rel="stylesheet" href="styles.css"></head><body><div class="topbar">FREE UK DELIVERY ON ORDERS OVER £75 · TIMELESS MODEST FASHION, DESIGNED IN THE UK</div><header><button id="menuBtn">☰</button><a class="logo" href="index.html"><b>W</b><span>WARDS COLLECTION</span></a><nav><a href="index.html">Home</a><a href="shop.html">Shop All</a><a href="timeless.html">Timeless</a><a href="wide-tops.html">Wide Tops</a><a href="longer-styles.html">Longer Styles</a><a href="lookbook.html">Lookbook</a><a href="about.html">About</a></nav><button id="bagBtn">Bag <span id="bagCount">0</span></button></header><aside id="drawer"><button id="drawerClose">×</button><a href="index.html">Home</a><a href="shop.html">Shop All</a><a href="timeless.html">Timeless</a><a href="wide-tops.html">Wide Tops</a><a href="longer-styles.html">Longer Styles</a><a href="lookbook.html">Lookbook</a><a href="about.html">About</a><a href="size-guide.html">Size Guide</a><a href="delivery-returns.html">Delivery & Returns</a><a href="contact.html">Contact</a></aside><main><section class="hero"><img src="assets/home-editorial.jpg"><div><span class="eyebrow">WARDS COLLECTION</span><h1>All Wards lines.<br>One beautiful home.</h1><p>Signature dresses, abayas, co-ords, outerwear, wide tops and our newest longer silhouettes.</p><a class="btn light" href="shop.html">Shop All</a></div></section><section class="intro"><span class="eyebrow">EXPLORE</span><h2>Timeless modest fashion for the modern wardrobe.</h2></section><section class="collections"><a href="timeless.html"><img src="assets/signature-dress.jpg"><span>Timeless Collection</span></a><a href="wide-tops.html"><img src="assets/rose-garden.jpg"><span>Wide Tops</span></a><a href="longer-styles.html"><img src="assets/longer-styles.jpg"><span>Longer Styles</span></a></section><section class="section"><h2>Featured designs</h2><div id="featuredGrid" class="grid"></div></section></main><footer><div class="fbrand"><b>W</b><strong>WARDS COLLECTION</strong><span>Timeless Modest Fashion</span></div><div class="flinks"><a href="shop.html">Shop</a><a href="size-guide.html">Size Guide</a><a href="delivery-returns.html">Delivery & Returns</a><a href="contact.html">Contact</a></div><p>© 2026 Wards Collection · Store prototype · Live checkout not yet connected.</p></footer><div id="overlay"></div><div id="modal"><button id="modalClose">×</button><div id="modalBody"></div></div><aside id="bag"><div class="baghead"><h2>Your Bag</h2><button id="bagClose">×</button></div><div id="bagItems"></div><div class="bagfoot"><p>Prices will be added after production costs are finalised.</p><button id="checkoutBtn" class="btn dark">Request availability</button></div></aside><script src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Wards Collection | Modest Fashion</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background: #f8f5f1;
+      color: #29231f;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.96);
+      border-bottom: 1px solid #e5ddd5;
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: auto;
+      padding: 18px 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 27px;
+      letter-spacing: 5px;
+      font-weight: bold;
+    }
+
+    .tagline {
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      margin-top: 2px;
+      color: #8a7566;
+    }
+
+    nav {
+      display: flex;
+      gap: 28px;
+    }
+
+    nav a {
+      color: #29231f;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    nav a:hover {
+      color: #9a765d;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 82vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 70px 25px;
+      background:
+        linear-gradient(rgba(248,245,241,0.72), rgba(248,245,241,0.72));
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .small-title {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: #9a765d;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(45px, 8vw, 90px);
+      letter-spacing: 8px;
+      font-weight: normal;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-family: Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.8;
+      color: #6e625a;
+      max-width: 620px;
+      margin: auto;
+    }
+
+    .hero-button {
+      display: inline-block;
+      margin-top: 32px;
+      padding: 15px 38px;
+      background: #29231f;
+      color: white;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      transition: 0.3s;
+    }
+
+    .hero-button:hover {
+      background: #9a765d;
+    }
+
+    /* SECTION */
+    section {
+      padding: 85px 6%;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-heading span {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: #9a765d;
+    }
+
+    .section-heading h2 {
+      font-size: 40px;
+      font-weight: normal;
+      margin-top: 10px;
+    }
+
+    /* COLLECTION */
+    .collection {
+      background: white;
+    }
+
+    .products {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .product {
+      background: #f5f0eb;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .product-image {
+      height: 430px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #e8dfd7;
+      color: #8a7566;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    .product-info {
+      padding: 22px 15px 25px;
+    }
+
+    .product h3 {
+      font-size: 21px;
+      font-weight: normal;
+      margin-bottom: 7px;
+    }
+
+    .product p {
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      color: #81756d;
+    }
+
+    /* ABOUT */
+    .about {
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .about p {
+      font-family: Arial, sans-serif;
+      color: #665b54;
+      line-height: 2;
+      font-size: 16px;
+    }
+
+    /* CONTACT */
+    .contact {
+      background: #eee7e0;
+      text-align: center;
+    }
+
+    .contact p {
+      font-family: Arial, sans-serif;
+      margin: 8px;
+      color: #665b54;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #29231f;
+      color: white;
+      text-align: center;
+      padding: 35px 20px;
+    }
+
+    footer .logo {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    footer p {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: #d9d0c9;
+    }
+
+    /* MOBILE */
+    @media (max-width: 750px) {
+
+      .nav {
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      nav {
+        gap: 18px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero {
+        min-height: 75vh;
+      }
+
+      .hero h1 {
+        letter-spacing: 4px;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+      }
+
+      .product-image {
+        height: 420px;
+      }
+
+      section {
+        padding: 65px 5%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="nav">
+
+      <div>
+        <div class="logo">WARDS</div>
+        <div class="tagline">COLLECTION</div>
+      </div>
+
+      <nav>
+        <a href="#home">HOME</a>
+        <a href="#collection">COLLECTION</a>
+        <a href="#about">ABOUT</a>
+        <a href="#contact">CONTACT</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+
+      <div class="hero-content">
+
+        <div class="small-title">
+          MODEST FASHION • TIMELESS STYLE
+        </div>
+
+        <h1>WARDS</h1>
+
+        <p>
+          Discover elegant modest fashion designed
+          for the modern woman.
+        </p>
+
+        <a class="hero-button" href="#collection">
+          DISCOVER THE COLLECTION
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- COLLECTION -->
+    <section class="collection" id="collection">
+
+      <div class="section-heading">
+        <span>THE LATEST</span>
+        <h2>Our Collection</h2>
+      </div>
+
+      <div class="products">
+
+        <article class="product">
+
+          <div class="product-image">
+            YOUR FASHION PHOTO 1
+          </div>
+
+          <div class="product-info">
+            <h3>Elegant Long Blouse</h3>
+            <p>Modern modest elegance</p>
+          </div>
+
+        </article>
+
+
+        <article class="product">
+
+          <div class="product-image">
+            YOUR FASHION PHOTO 2
+          </div>
+
+          <div class="product-info">
+            <h3>Two-Piece Dress</h3>
+            <p>Effortless timeless style</p>
+          </div>
+
+        </article>
+
+
+        <article class="product">
+
+          <div class="product-image">
+            YOUR FASHION PHOTO 3
+          </div>
+
+          <div class="product-info">
+            <h3>Signature Collection</h3>
+            <p>Designed with confidence</p>
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section id="about">
+
+      <div class="section-heading">
+        <span>OUR STORY</span>
+        <h2>About Wards</h2>
+      </div>
+
+      <div class="about">
+
+        <p>
+          Wards Collection brings together modesty,
+          elegance and contemporary fashion.
+          Every design is created to help women
+          feel confident, comfortable and beautifully
+          themselves.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+
+      <div class="section-heading">
+        <span>GET IN TOUCH</span>
+        <h2>Contact Wards</h2>
+      </div>
+
+      <p>Email: info@wardscollection.com</p>
+      <p>Follow us on social media</p>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+
+    <div class="logo">WARDS</div>
+
+    <p>
+      © 2026 Wards Collection. All rights reserved.
+    </p>
+
+  </footer>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Wards Collection | Modest Fashion</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background: #f8f5f1;
+      color: #29231f;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.96);
+      border-bottom: 1px solid #e5ddd5;
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: auto;
+      padding: 18px 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 27px;
+      letter-spacing: 5px;
+      font-weight: bold;
+    }
+
+    .tagline {
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      margin-top: 2px;
+      color: #8a7566;
+    }
+
+    nav {
+      display: flex;
+      gap: 28px;
+    }
+
+    nav a {
+      color: #29231f;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    nav a:hover {
+      color: #9a765d;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 82vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 70px 25px;
+      background:
+        linear-gradient(rgba(248,245,241,0.72), rgba(248,245,241,0.72));
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .small-title {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: #9a765d;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(45px, 8vw, 90px);
+      letter-spacing: 8px;
+      font-weight: normal;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-family: Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.8;
+      color: #6e625a;
+      max-width: 620px;
+      margin: auto;
+    }
+
+    .hero-button {
+      display: inline-block;
+      margin-top: 32px;
+      padding: 15px 38px;
+      background: #29231f;
+      color: white;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      transition: 0.3s;
+    }
+
+    .hero-button:hover {
+      background: #9a765d;
+    }
+
+    /* SECTION */
+    section {
+      padding: 85px 6%;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-heading span {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: #9a765d;
+    }
+
+    .section-heading h2 {
+      font-size: 40px;
+      font-weight: normal;
+      margin-top: 10px;
+    }
+
+    /* COLLECTION */
+    .collection {
+      background: white;
+    }
+
+    .products {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .product {
+      background: #f5f0eb;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .product-image {
+      height: 430px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #e8dfd7;
+      color: #8a7566;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    .product-info {
+      padding: 22px 15px 25px;
+    }
+
+    .product h3 {
+      font-size: 21px;
+      font-weight: normal;
+      margin-bottom: 7px;
+    }
+
+    .product p {
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      color: #81756d;
+    }
+
+    /* ABOUT */
+    .about {
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .about p {
+      font-family: Arial, sans-serif;
+      color: #665b54;
+      line-height: 2;
+      font-size: 16px;
+    }
+
+    /* CONTACT */
+    .contact {
+      background: #eee7e0;
+      text-align: center;
+    }
+
+    .contact p {
+      font-family: Arial, sans-serif;
+      margin: 8px;
+      color: #665b54;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #29231f;
+      color: white;
+      text-align: center;
+      padding: 35px 20px;
+    }
+
+    footer .logo {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    footer p {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: #d9d0c9;
+    }
+
+    /* MOBILE */
+    @media (max-width: 750px) {
+
+      .nav {
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      nav {
+        gap: 18px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero {
+        min-height: 75vh;
+      }
+
+      .hero h1 {
+        letter-spacing: 4px;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+      }
+
+      .product-image {
+        height: 420px;
+      }
+
+      section {
+        padding: 65px 5%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="nav">
+
+      <div>
+        <div class="logo">WARDS</div>
+        <div class="tagline">COLLECTION</div>
+      </div>
+
+      <nav>
+        <a href="#home">HOME</a>
+        <a href="#collection">COLLECTION</a>
+        <a href="#about">ABOUT</a>
+        <a href="#contact">CONTACT</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+
+      <div class="hero-content">
+
+        <div class="small-title">
+          MODEST FASHION • TIMELESS STYLE
+        </div>
+
+        <h1>WARDS</h1>
+
+        <p>
+          Discover elegant modest fashion designed
+          for the modern woman.
+        </p>
+
+        <a class="hero-button" href="#collection">
+          DISCOVER THE COLLECTION
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- COLLECTION -->
+    <section class="collection" id="collection">
+
+      <div class="section-heading">
+        <span>THE LATEST</span>
+        <h2>Our Collection</h2>
+      </div>
+
+      <div class="products">
+
+        <article class="product">
+
+          <div class="product-image">
+            YOUR FASHION PHOTO 1
+          </div>
+
+          <div class="product-info">
+            <h3>Elegant Long Blouse</h3>
+            <p>Modern modest elegance</p>
+          </div>
+
+        </article>
+
+
+        <article class="product">
+
+          <div class="product-image">
+            YOUR FASHION PHOTO 2
+          </div>
+
+          <div class="product-info">
+            <h3>Two-Piece Dress</h3>
+            <p>Effortless timeless style</p>
+          </div>
+
+        </article>
+
+
+        <article class="product">
+
+          <div class="product-image">
+            YOUR FASHION PHOTO 3
+          </div>
+
+          <div class="product-info">
+            <h3>Signature Collection</h3>
+            <p>Designed with confidence</p>
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section id="about">
+
+      <div class="section-heading">
+        <span>OUR STORY</span>
+        <h2>About Wards</h2>
+      </div>
+
+      <div class="about">
+
+        <p>
+          Wards Collection brings together modesty,
+          elegance and contemporary fashion.
+          Every design is created to help women
+          feel confident, comfortable and beautifully
+          themselves.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+
+      <div class="section-heading">
+        <span>GET IN TOUCH</span>
+        <h2>Contact Wards</h2>
+      </div>
+
+      <p>Email: info@wardscollection.com</p>
+      <p>Follow us on social media</p>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+
+    <div class="logo">WARDS</div>
+
+    <p>
+      © 2026 Wards Collection. All rights reserved.
+    </p>
+
+  </footer>
+
+</body>
+</html>
+</body>
+</html>
