@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ahuis2580-svg.github.io/wards-collection/sitemap.xml
+Sitemap: https://wardacollection.com/sitemap.xml
