@@ -1,119 +1,35 @@
-const bag = JSON.parse(localStorage.getItem("wardsBag") || "[]");
+const BAG_KEY = 'wardsBag';
+let bag = (()=>{try{return JSON.parse(localStorage.getItem(BAG_KEY)||'[]')}catch(e){return []}})();
+let wardsProducts=[];
 
-function updateBagCount() {
-  const count = bag.length;
-  document.querySelectorAll(".bag-count").forEach(el => {
-    el.textContent = count;
-  });
+function saveBag(){localStorage.setItem(BAG_KEY,JSON.stringify(bag));updateBagCount();renderBag();}
+function updateBagCount(){const count=bag.reduce((n,i)=>n+(Number(i.qty)||1),0);document.querySelectorAll('.bag-count,#bagCount').forEach(el=>el.textContent=count)}
+function addToBag(product){const existing=bag.find(i=>i.id===product.id);if(existing)existing.qty=(existing.qty||1)+1;else bag.push({id:product.id,name:product.name,cat:product.cat,img:product.img,qty:1});saveBag();openBag();}
+function changeQty(id,delta){const item=bag.find(i=>i.id===id);if(!item)return;item.qty=(item.qty||1)+delta;if(item.qty<1)bag=bag.filter(i=>i.id!==id);saveBag();}
+function removeFromBag(id){bag=bag.filter(i=>i.id!==id);saveBag();}
+function escapeHtml(value){return String(value).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+
+async function loadProducts(){try{const r=await fetch('products.json',{cache:'no-store'});if(!r.ok)throw new Error('Could not load products');wardsProducts=await r.json();return wardsProducts}catch(e){console.error(e);return []}}
+function productCard(p){return `<article class="product-card"><a href="product.html?id=${encodeURIComponent(p.id)}"><img src="${escapeHtml(p.img)}" alt="${escapeHtml(p.name)}" loading="lazy"><div class="product-info"><p class="product-category">${escapeHtml(p.cat||'')}</p><h3>${escapeHtml(p.name)}</h3><p>${escapeHtml(p.desc||'')}</p></div></a><div class="product-actions"><button class="add-bag-btn" data-add="${escapeHtml(p.id)}">Add to Bag</button><a class="view-btn" href="product.html?id=${encodeURIComponent(p.id)}">View</a></div></article>`}
+function renderProducts(container,products){if(!container)return;container.innerHTML=products.map(productCard).join('');container.querySelectorAll('[data-add]').forEach(button=>button.addEventListener('click',()=>{const p=wardsProducts.find(x=>x.id===button.dataset.add);if(p)addToBag(p)}))}
+
+function buildShell(){const header=document.querySelector('[data-site-header]');if(header){header.innerHTML=`<div class="topbar">FREE UK DELIVERY ON ORDERS OVER £75 · TIMELESS MODEST FASHION, DESIGNED IN THE UK</div><div class="site-header"><button class="menu-button" aria-label="Open menu" data-menu>☰</button><a class="logo" href="index.html"><span class="logo-mark">W</span><span class="logo-type">WARDS<small>COLLECTION</small></span></a><nav class="main-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="shop.html">Shop All</a><a href="timeless.html">Timeless</a><a href="new-arrivals.html">New Arrivals</a><a href="collections.html">Collections</a><a href="lookbook.html">Lookbook</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav><button class="bag-button" data-bag-open aria-label="Open shopping bag">Bag <span class="bag-count" id="bagCount">0</span></button></div><nav class="mobile-drawer" data-mobile-nav aria-label="Mobile navigation"><a href="index.html">Home</a><a href="shop.html">Shop All</a><a href="timeless.html">Timeless</a><a href="new-arrivals.html">New Arrivals</a><a href="collections.html">Collections</a><a href="lookbook.html">Lookbook</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="size-guide.html">Size Guide</a><a href="delivery-returns.html">Delivery & Returns</a><a href="faq.html">FAQs</a></nav>`}
+const footer=document.querySelector('[data-site-footer]');if(footer){footer.innerHTML=`<footer class="site-footer"><div class="footer-grid"><div><h3>WARDS COLLECTION</h3><p>Timeless modest fashion, designed in the UK.</p><a class="footer-email" href="mailto:wardsugc@gmail.com">Email Us: wardsugc@gmail.com</a></div><div><h3>Shop</h3><a href="shop.html">Shop All</a><a href="timeless.html">Timeless Collection</a><a href="new-arrivals.html">New Arrivals</a><a href="size-guide.html">Size Guide</a></div><div><h3>Help</h3><a href="delivery-returns.html">Delivery & Returns</a><a href="faq.html">FAQs</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms & Conditions</a><a href="sitemap.html">Sitemap</a></div></div><div class="footer-bottom">© 2026 Wards Collection · Store preview · Live checkout not yet connected.</div></footer>`}
+let bagRoot=document.getElementById('bagRoot');if(!bagRoot){bagRoot=document.createElement('div');bagRoot.id='bagRoot';document.body.appendChild(bagRoot)}bagRoot.innerHTML=`<div class="drawer-backdrop" data-bag-backdrop></div><aside class="bag-drawer" aria-label="Shopping bag"><div class="baghead"><h2>Your Bag</h2><button class="bag-close" data-bag-close aria-label="Close shopping bag">×</button></div><div class="bag-items" id="bagItems"></div><div class="bagfoot"><p>Prices, stock and delivery charges will be confirmed before an order is accepted. Live payment is not connected.</p><button id="availabilityBtn" class="btn dark">Request availability</button></div></aside>`;
 }
 
-function saveBag() {
-  localStorage.setItem("wardsBag", JSON.stringify(bag));
-  updateBagCount();
-}
+function renderBag(){const el=document.getElementById('bagItems');if(!el)return;if(!bag.length){el.innerHTML='<p>Your bag is empty.</p>';return}el.innerHTML=bag.map(item=>`<article class="bag-item"><img src="${escapeHtml(item.img)}" alt="${escapeHtml(item.name)}"><div><h3>${escapeHtml(item.name)}</h3><div class="qty-controls"><button data-qty-minus="${escapeHtml(item.id)}" aria-label="Decrease quantity">−</button><span>${item.qty||1}</span><button data-qty-plus="${escapeHtml(item.id)}" aria-label="Increase quantity">+</button></div><button class="remove-btn" data-remove="${escapeHtml(item.id)}">Remove</button></div></article>`).join('');el.querySelectorAll('[data-qty-minus]').forEach(b=>b.onclick=()=>changeQty(b.dataset.qtyMinus,-1));el.querySelectorAll('[data-qty-plus]').forEach(b=>b.onclick=()=>changeQty(b.dataset.qtyPlus,1));el.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>removeFromBag(b.dataset.remove));}
+function openBag(){const d=document.querySelector('.bag-drawer'),b=document.querySelector('.drawer-backdrop');if(d)d.classList.add('open');if(b)b.classList.add('open')}
+function closeBag(){document.querySelector('.bag-drawer')?.classList.remove('open');document.querySelector('.drawer-backdrop')?.classList.remove('open')}
 
-function addToBag(product) {
-  bag.push(product);
-  saveBag();
-  alert(product.name + " added to your bag");
-}
+function initContactForm(){const form=document.getElementById('contactForm');if(!form)return;form.addEventListener('submit',e=>{e.prevent=e||e;if(typeof e.preventDefault==='function')e.preventDefault();const data=new FormData(form);const subject='Wards Collection enquiry: '+(data.get('subject')||'General enquiry');const body=`Name: ${data.get('name')}\nEmail: ${data.get('email')}\n\n${data.get('message')||''}`;window.location.href=`mailto:wardsugc@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;const note=document.getElementById('contactNote');if(note)note.textContent='Your email application should open with a prepared message. This form has not sent or stored anything on a server.'})}
 
-async function loadProducts() {
-  try {
-    const response = await fetch("products.json");
-    const products = await response.json();
+async function initProductPage(){const host=document.getElementById('productDetail');if(!host)return;const id=new URLSearchParams(location.search).get('id');const products=await loadProducts();const p=products.find(x=>x.id===id)||products[0];if(!p){host.textContent='Product not found.';return}document.title=`${p.name} | Wards Collection`;const description=document.querySelector('meta[name="description"]');if(description)description.content=p.desc||`${p.name} from Wards Collection.`;host.innerHTML=`<img src="${escapeHtml(p.img)}" alt="${escapeHtml(p.name)}"><div class="detail-copy"><span class="eyebrow">${escapeHtml(p.cat)}</span><h1>${escapeHtml(p.name)}</h1><p>${escapeHtml(p.desc||'')}</p><div class="detail-meta"><div><strong>Colours</strong>${(p.colors||[]).map(escapeHtml).join(', ')}</div><div><strong>Sizes</strong>${(p.sizes||[]).join(', ')}</div><div><strong>Reference</strong>${escapeHtml(p.id)}</div></div><button class="btn dark" id="detailAdd">Add to Bag</button><p><small>Price and availability to be confirmed.</small></p></div>`;document.getElementById('detailAdd').onclick=()=>addToBag(p)}
 
-    window.wardsProducts = products;
+async function initShop(){const grid=document.getElementById('products');if(!grid)return;const products=await loadProducts();const category=document.getElementById('categoryFilter');const search=document.getElementById('search');function apply(){const c=category?.value||'All';const q=(search?.value||'').toLowerCase();let items=products.filter(p=>(c==='All'||p.cat===c)&&(!q||[p.name,p.cat,p.desc,...(p.colors||[])].join(' ').toLowerCase().includes(q)));renderProducts(grid,items)}category?.addEventListener('change',apply);search?.addEventListener('input',apply);apply()}
 
-    renderProducts(products);
-  } catch (error) {
-    console.error("Could not load Wards Collection products:", error);
-  }
-}
+async function initCollectionPage(){const grid=document.getElementById('collectionProducts');if(!grid)return;const products=await loadProducts();const mode=grid.dataset.collection||'all';let items=mode==='timeless'?products.filter(p=>p.cat==='Wide Tops'):mode==='new'?products.filter(p=>p.cat==='Longer Styles'):mode==='wider'?products.filter(p=>p.cat==='Wide Tops'):products;renderProducts(grid,items)}
 
-function renderProducts(products) {
-  const container =
-    document.getElementById("products") ||
-    document.getElementById("product-grid");
+async function initHome(){const grid=document.getElementById('homeProducts');if(!grid)return;const products=await loadProducts();renderProducts(grid,products.slice(0,4))}
 
-  if (!container) return;
-
-  container.innerHTML = "";
-
-  products.forEach(product => {
-    const card = document.createElement("div");
-    card.className = "product-card";
-
-    card.innerHTML = `
-      <img src="${product.img}" alt="${product.name}">
-      <div class="product-info">
-        <p class="product-category">${product.cat || ""}</p>
-        <h3>${product.name}</h3>
-        <p>${product.desc || ""}</p>
-        <button class="add-bag-btn">Add to Bag</button>
-      </div>
-    `;
-
-    card.querySelector(".add-bag-btn").addEventListener("click", () => {
-      addToBag(product);
-    });
-
-    container.appendChild(card);
-  });
-}
-
-function searchProducts(searchText) {
-  if (!window.wardsProducts) return;
-
-  const term = searchText.toLowerCase().trim();
-
-  const filtered = window.wardsProducts.filter(product => {
-    return (
-      product.name.toLowerCase().includes(term) ||
-      (product.cat || "").toLowerCase().includes(term) ||
-      (product.desc || "").toLowerCase().includes(term) ||
-      (product.colors || []).some(color =>
-        color.toLowerCase().includes(term)
-      )
-    );
-  });
-
-  renderProducts(filtered);
-}
-
-function filterCategory(category) {
-  if (!window.wardsProducts) return;
-
-  if (category === "All") {
-    renderProducts(window.wardsProducts);
-    return;
-  }
-
-  const filtered = window.wardsProducts.filter(
-    product => product.cat === category
-  );
-
-  renderProducts(filtered);
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  updateBagCount();
-
-  const search =
-    document.getElementById("search") ||
-    document.querySelector('input[type="search"]');
-
-  if (search) {
-    search.addEventListener("input", event => {
-      searchProducts(event.target.value);
-    });
-  }
-
-  document.querySelectorAll("[data-category]").forEach(button => {
-    button.addEventListener("click", () => {
-      filterCategory(button.dataset.category);
-    });
-  });
-
-  loadProducts();
-});
+document.addEventListener('DOMContentLoaded',()=>{buildShell();updateBagCount();renderBag();document.querySelector('[data-menu]')?.addEventListener('click',()=>document.querySelector('[data-mobile-nav]')?.classList.toggle('open'));document.querySelector('[data-bag-open]')?.addEventListener('click',openBag);document.querySelector('[data-bag-close]')?.addEventListener('click',closeBag);document.querySelector('[data-bag-backdrop]')?.addEventListener('click',closeBag);document.getElementById('availabilityBtn')?.addEventListener('click',()=>{window.location.href='mailto:wardsugc@gmail.com?subject='+encodeURIComponent('Wards Collection availability enquiry')+'&body='+encodeURIComponent('Please confirm availability for the items in my bag:\n\n'+bag.map(i=>`${i.name} (${i.id}) x ${i.qty||1}`).join('\n'))});initContactForm();initShop();initCollectionPage();initHome();initProductPage()});
